@@ -8,27 +8,24 @@ def execute(filters=None):
 	return get_coulmns(),get_data(filters)
 
 def get_data(filters):
-	conditions = "AND 1=1"
-	if (filters.get('member_name')):
-		conditions+=f" AND member_name = '{(filters.get('member_name'))}' "
-	if (filters.get('subscription_plan')):
-		conditions+=f" AND subscription_plan = '{(filters.get('subscription_plan'))}'"
-	# if(filters.get('extra_classes')):
-	# 	conditions+=f" AND extra_classes = '{(filters.get('extra_classes'))}'"
-	# print(f'\n\n\n{filters}\n\n\n')
-	# print(f'\n\n\n{conditions}\n\n\n')
-	# print(f'\n\n\n{filters}\n\n\n')
+	conditions = ""
+	values = {}
+	if filters and filters.get('member_name'):
+		conditions += " AND member_name = %(member_name)s"
+		values['member_name'] = filters.get('member_name')
+	if filters and filters.get('subscription_plan'):
+		conditions += " AND subscription_plan = %(subscription_plan)s"
+		values['subscription_plan'] = filters.get('subscription_plan')
 
-	data = frappe.db.sql(f"""select name,member_name,subscription_plan,membership_fee_balance,plane_fee,master_fee,extra_classes_total_fee,locker_total_fee,total_fee,fee_paid,balance from `tabGym Registration Form` where docstatus=1 {conditions};""")
+	data = frappe.db.sql(f"""select name,member_name,subscription_plan,membership_fee_balance,plane_fee,master_fee,extra_classes_total_fee,locker_total_fee,total_fee,fee_paid,balance from `tabGym Registration Form` where docstatus=1 {conditions};""", values)
 
-	
 	return data
 
 def get_coulmns():
 	return[
 		"ID:Link/Gym Registration Form :150",
 		"Member Name:Data:150",
-		"Subscription Plan:Data:100"
+		"Subscription Plan:Data:100",
 		"Membership Fee :Currency :100",
 		"Plan Fee :Currency :100",
 		"Master Fee Balance:Currency :100",

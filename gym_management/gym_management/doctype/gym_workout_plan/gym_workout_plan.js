@@ -46,16 +46,17 @@ frappe.ui.form.on('Gym Workout Plan', {
 	},
 	before_save: function (frm) {
 		let monday_workout = frm.doc.monday_exercise.length;
-		validate_work_out_level(frm,monday_workout)
+		validate_weekday_work_out_level(frm,monday_workout)
 		let tuesday_workout = frm.doc.tuesday_exercise.length;
-		validate_work_out_level(frm,tuesday_workout)
+		validate_weekday_work_out_level(frm,tuesday_workout)
 		let wednesday_workout = frm.doc.wednesday_exercise.length;
-		validate_work_out_level(frm,wednesday_workout)
+		validate_weekday_work_out_level(frm,wednesday_workout)
 		let thursday_workout = frm.doc.thursday_exercise.length;
-		validate_work_out_level(frm,thursday_workout)
+		validate_weekday_work_out_level(frm,thursday_workout)
+		let friday_workout = frm.doc.friday_exercise.length;
+		validate_weekday_work_out_level(frm,friday_workout)
 		let saturday_workout = frm.doc.saturday_exercise.length;
-		validate_work_out_level(frm,saturday_workout)
-		
+		validate_weekday_work_out_level(frm,saturday_workout)
 
 	},
 

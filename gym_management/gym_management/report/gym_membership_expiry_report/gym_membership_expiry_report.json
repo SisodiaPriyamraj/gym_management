@@ -1,0 +1,28 @@
+{
+ "add_total_row": 0,
+ "creation": "2026-08-13 00:00:00.000000",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2026-08-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Gym Management",
+ "name": "Gym Membership Expiry Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n  `tabGym Membership`.name as \"Membership:Link/Gym Membership:130\",\n  `tabGym Membership`.full_name as \"Member Name:Data:150\",\n  `tabGym Membership`.phone__number as \"Phone Number:Data:120\",\n  `tabGym Membership`.membership_starts as \"Starts:Date:110\",\n  `tabGym Membership`.membership_ends as \"Ends:Date:110\",\n  DATEDIFF(`tabGym Membership`.membership_ends, CURDATE()) as \"Days Left:Int:100\",\n  `tabGym Membership`.fee_paid as \"Payment Status:Select/Paid,Unpaid,Partially Paid:120\",\n  `tabGym Membership`.total_amount as \"Total Amount:Currency:110\",\n  `tabGym Membership`.balance as \"Balance:Currency:100\"\nFROM `tabGym Membership`\nWHERE `tabGym Membership`.docstatus = 1\nORDER BY `tabGym Membership`.membership_ends ASC",
+ "ref_doctype": "Gym Membership",
+ "report_name": "Gym Membership Expiry Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Gym Master"
+  }
+ ]
+}
