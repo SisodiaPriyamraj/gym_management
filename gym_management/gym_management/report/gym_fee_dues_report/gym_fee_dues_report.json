@@ -13,8 +13,8 @@
  "name": "Gym Fee Dues Report",
  "owner": "Administrator",
  "prepared_report": 0,
- "query": "SELECT\n  `tabGym Registration Form`.name as \"Registration:Link/Gym Registration Form:150\",\n  `tabGym Registration Form`.member_name as \"Member Name:Data:150\",\n  `tabGym Registration Form`.phone_number as \"Phone Number:Data:120\",\n  `tabGym Registration Form`.subscription_plan as \"Plan:Data:120\",\n  `tabGym Registration Form`.total_fee as \"Total Fee:Currency:110\",\n  `tabGym Registration Form`.fee_paid as \"Fee Paid:Currency:110\",\n  `tabGym Registration Form`.balance as \"Balance Due:Currency:110\",\n  `tabGym Registration Form`.status_of_fees as \"Status:Select/Fully Paid,Partially Paid,Not Paid:120\",\n  `tabGym Registration Form`.date_of_registration as \"Registered On:Date:120\"\nFROM `tabGym Registration Form`\nWHERE `tabGym Registration Form`.docstatus = 1\n  AND `tabGym Registration Form`.balance > 0\nORDER BY `tabGym Registration Form`.balance DESC",
- "ref_doctype": "Gym Registration Form",
+ "query": "SELECT\n  `tabGym Membership`.name as \"Membership:Link/Gym Membership:150\",\n  `tabGym Membership`.full_name as \"Member Name:Data:150\",\n  `tabGym Membership`.phone__number as \"Phone Number:Data:120\",\n  `tabGym Membership`.subscription_plan as \"Plan:Data:120\",\n  `tabGym Membership`.total_amount as \"Total Amount:Currency:110\",\n  `tabGym Membership`.amount_paid as \"Amount Paid:Currency:110\",\n  `tabGym Membership`.balance as \"Balance Due:Currency:110\",\n  `tabGym Membership`.fee_paid as \"Status:Select/Paid,Unpaid,Partially Paid:120\",\n  `tabGym Membership`.date_of_registration as \"Registered On:Date:120\"\nFROM `tabGym Membership`\nWHERE `tabGym Membership`.docstatus = 1\n  AND `tabGym Membership`.balance > 0\nORDER BY `tabGym Membership`.balance DESC",
+ "ref_doctype": "Gym Membership",
  "report_name": "Gym Fee Dues Report",
  "report_type": "Query Report",
  "roles": [

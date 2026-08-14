@@ -57,7 +57,7 @@ def membership_and_member_validation(self):
 def membership_validation(self):
     validate_membership = frappe.db.exists('Gym Membership', {
         'docstatus':1,
-        'membership_starts':('<=',  self.date_of_registration),
+        'date_of_registration':('<=',  self.date_of_registration),
         'membership_ends':('>=',  self.date_of_registration),
     })
     if not validate_membership:

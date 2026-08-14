@@ -10,21 +10,43 @@
  "field_order": [
   "gym_member_id",
   "phone__number",
-  "membership_valid_for",
-  "membership_starts",
   "column_break_rxomy",
   "full_name",
   "age",
   "fee_paid",
-  "membership_ends",
   "section_break_4ohtz",
   "total_amount",
   "column_break_hvg5u",
   "amount_paid",
   "column_break_0kzgf",
   "balance",
-  "section_break_xms0h",
-  "column_break_chsas",
+  "plan_details_section",
+  "date_of_registration",
+  "subscription_plan",
+  "column_break_k5tm2",
+  "validity_plan_in_days",
+  "membership_ends",
+  "gym_master_trainer_details_section",
+  "do_you_want_personal_trainer",
+  "master_id",
+  "experience",
+  "master_phone_number",
+  "column_break_v1bar",
+  "master_training_level",
+  "master_name",
+  "master_fee",
+  "gym_extra_classes_section",
+  "do_you_want_extra_classes",
+  "extra_classes",
+  "extra_classes_total_fee",
+  "locker_details_section",
+  "do_you_want_locker",
+  "locker_id",
+  "locker_total_fee",
+  "column_break_mjvkw",
+  "locker_fees_per_month",
+  "locker_duration",
+  "locker_available_till",
   "amended_from"
  ],
  "fields": [
@@ -55,7 +77,7 @@
   },
   {
    "default": "150",
-   "fetch_from": "subscription.fee",
+   "fetch_from": "subscription_plan.fee",
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "label": "Total Amount"
@@ -89,35 +111,10 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_xms0h",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "amount_paid",
    "fieldtype": "Currency",
    "label": "Amount Paid",
    "options": "Gym Trainers"
-  },
-  {
-   "fieldname": "membership_starts",
-   "fieldtype": "Date",
-   "label": "Membership Starts"
-  },
-  {
-   "fieldname": "column_break_chsas",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "membership_ends",
-   "fieldtype": "Date",
-   "label": "Membership Ends"
-  },
-  {
-   "default": "1",
-   "description": "In Years",
-   "fieldname": "membership_valid_for",
-   "fieldtype": "Int",
-   "label": "Membership Valid For"
   },
   {
    "fieldname": "amended_from",
@@ -139,12 +136,186 @@
    "fieldname": "age",
    "fieldtype": "Data",
    "label": "Age"
+  },
+  {
+   "fieldname": "plan_details_section",
+   "fieldtype": "Section Break",
+   "label": "Plan Details"
+  },
+  {
+   "fieldname": "date_of_registration",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Registration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subscription_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Subscription Plan",
+   "options": "Gym Subscription Plans",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_k5tm2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "subscription_plan.validity_in_days",
+   "fieldname": "validity_plan_in_days",
+   "fieldtype": "Int",
+   "label": "Validity Plan In Days"
+  },
+  {
+   "fieldname": "membership_ends",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Membership Ends",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gym_master_trainer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Gym Master Trainer Details"
+  },
+  {
+   "fieldname": "do_you_want_personal_trainer",
+   "fieldtype": "Select",
+   "label": "Do you want Personal Trainer",
+   "options": "No\nYes",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fieldname": "master_id",
+   "fieldtype": "Link",
+   "label": "Master ID",
+   "mandatory_depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'\n",
+   "options": "Gym Master Trainer"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fetch_from": "master_id.experience",
+   "fieldname": "experience",
+   "fieldtype": "Float",
+   "label": "Experience "
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fetch_from": "master_id.phone",
+   "fieldname": "master_phone_number",
+   "fieldtype": "Data",
+   "label": "Master Phone Number"
+  },
+  {
+   "fieldname": "column_break_v1bar",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fetch_from": "master_id.address",
+   "fieldname": "master_training_level",
+   "fieldtype": "Data",
+   "label": "Master Training Level"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fetch_from": "master_id.master_name",
+   "fieldname": "master_name",
+   "fieldtype": "Data",
+   "label": "Master Name"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_personal_trainer === 'Yes'",
+   "fetch_from": "master_id.master_fee",
+   "fieldname": "master_fee",
+   "fieldtype": "Currency",
+   "label": "Master Fee"
+  },
+  {
+   "fieldname": "gym_extra_classes_section",
+   "fieldtype": "Section Break",
+   "label": "Gym Extra Classes"
+  },
+  {
+   "fieldname": "do_you_want_extra_classes",
+   "fieldtype": "Select",
+   "label": "Do You Want Extra Classes",
+   "options": "No\nYes"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_extra_classes === 'Yes'",
+   "fieldname": "extra_classes",
+   "fieldtype": "Table",
+   "label": "Extra Classes",
+   "mandatory_depends_on": "eval:doc.do_you_want_extra_classes === 'Yes'\n",
+   "options": "Gym Extra Classes Child Table"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_extra_classes === 'Yes'",
+   "fieldname": "extra_classes_total_fee",
+   "fieldtype": "Currency",
+   "label": "Extra Classes Total Fee"
+  },
+  {
+   "fieldname": "locker_details_section",
+   "fieldtype": "Section Break",
+   "label": "Locker Details"
+  },
+  {
+   "fieldname": "do_you_want_locker",
+   "fieldtype": "Select",
+   "label": "Do You Want Locker ",
+   "options": "No\nYes",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "fieldname": "locker_id",
+   "fieldtype": "Link",
+   "label": "Locker ID",
+   "mandatory_depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "options": "Gym Locker"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "fieldname": "locker_total_fee",
+   "fieldtype": "Currency",
+   "label": "Locker Total Fee"
+  },
+  {
+   "fieldname": "column_break_mjvkw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "fetch_from": "locker_id.locker_fee",
+   "fieldname": "locker_fees_per_month",
+   "fieldtype": "Currency",
+   "label": "Locker Fees Per Month",
+   "read_only_depends_on": "eval:doc.do_you_want_locker === 'Yes'"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "description": "In months",
+   "fetch_from": "locker_id.duration",
+   "fetch_if_empty": 1,
+   "fieldname": "locker_duration",
+   "fieldtype": "Int",
+   "label": "Locker Duration"
+  },
+  {
+   "depends_on": "eval:doc.do_you_want_locker === 'Yes'",
+   "fieldname": "locker_available_till",
+   "fieldtype": "Date",
+   "label": "Locker Available Till"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-08 16:09:35.949320",
+ "modified": "2026-08-14 16:36:47.327650",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Membership",
@@ -152,6 +323,8 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -161,13 +334,12 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
-   "write": 1,
    "submit": 1,
-   "cancel": 1,
-   "amend": 1
+   "write": 1
   }
  ],
  "quick_entry": 1,
+ "row_format": "Dynamic",
  "search_fields": "full_name",
  "sort_field": "modified",
  "sort_order": "DESC",

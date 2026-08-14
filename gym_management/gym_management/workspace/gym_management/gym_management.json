@@ -1,7 +1,7 @@
 {
  "charts": [],
  "content": "[{\"id\": \"1jhSsW-uJn\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Gym Management</b></span>\", \"col\": 12}}, {\"id\": \"rDPiMJpWAJ\", \"type\": \"card\", \"data\": {\"card_name\": \"Masters\", \"col\": 4}}, {\"id\": \"yvUa0Vo8eP\", \"type\": \"card\", \"data\": {\"card_name\": \"Workout & Fitness\", \"col\": 4}}, {\"id\": \"_7Xx72_qsb\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"exDRK6Ji11\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Reports</b></span>\", \"col\": 12}}, {\"id\": \"N6tKhbtxBt\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Gym Fee Dues Report\", \"col\": 3}}, {\"id\": \"mEZAkFglKr\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Gym Membership Expiry Report\", \"col\": 3}}, {\"id\": \"2Evh0CeTs2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Gym Locker Availability Report\", \"col\": 3}}, {\"id\": \"jkp0g2Y8Fy\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Gym Master Report\", \"col\": 3}}, {\"id\": \"0vl9a__V7K\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Gym Monthly Income\", \"col\": 3}}]",
- "creation": "2026-08-13 00:00:00.000000",
+ "creation": "2026-08-13 00:00:00",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -56,16 +56,6 @@
    "label": "Gym Locker",
    "link_count": 0,
    "link_to": "Gym Locker",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Gym Registration Form",
-   "link_count": 0,
-   "link_to": "Gym Registration Form",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -179,7 +169,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-08-13 12:00:00.000000",
+ "modified": "2026-08-14 16:51:57.862123",
  "modified_by": "Administrator",
  "module": "Gym Management",
  "name": "Gym Management",
@@ -194,38 +184,43 @@
  "shortcuts": [
   {
    "color": "Blue",
+   "doc_view": "",
    "label": "Gym Fee Dues Report",
    "link_to": "Gym Fee Dues Report",
-   "type": "Report",
-   "doc_view": "Report"
+   "report_ref_doctype": "Gym Registration Form",
+   "type": "Report"
   },
   {
    "color": "Green",
+   "doc_view": "",
    "label": "Gym Membership Expiry Report",
    "link_to": "Gym Membership Expiry Report",
-   "type": "Report",
-   "doc_view": "Report"
+   "report_ref_doctype": "Gym Membership",
+   "type": "Report"
   },
   {
    "color": "Orange",
+   "doc_view": "",
    "label": "Gym Locker Availability Report",
    "link_to": "Gym Locker Availability Report",
-   "type": "Report",
-   "doc_view": "Report"
+   "report_ref_doctype": "Gym Locker",
+   "type": "Report"
   },
   {
    "color": "Red",
+   "doc_view": "",
    "label": "Gym Master Report",
    "link_to": "Gym Master Report",
-   "type": "Report",
-   "doc_view": "Report"
+   "report_ref_doctype": "Gym Registration Form",
+   "type": "Report"
   },
   {
    "color": "Yellow",
+   "doc_view": "",
    "label": "Gym Monthly Income",
    "link_to": "Gym Monthly Income",
-   "type": "Report",
-   "doc_view": "Report"
+   "report_ref_doctype": "Gym Registration Form",
+   "type": "Report"
   }
  ],
  "title": "Gym Management"

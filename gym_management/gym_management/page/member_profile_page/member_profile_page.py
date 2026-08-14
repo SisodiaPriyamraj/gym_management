@@ -3,9 +3,10 @@ from frappe import _
 
 @frappe.whitelist()
 def get_member_data():
-    member = frappe.get_doc('Gym Registration Form', 'GYM-REG-0004')
-    member_name = member.get('member_name')
+    member = frappe.get_last_doc('Gym Membership')
+    member_name = member.get('full_name')
     subscription_plan = member.get('subscription_plan')
+    master_phone_number = None
     if member.do_you_want_personal_trainer=='Yes':
         master_name = member.get('master_name')
         master_phone_number = member.get('master_phone_number')

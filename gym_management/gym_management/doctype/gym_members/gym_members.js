@@ -11,7 +11,7 @@ frappe.ui.form.on('Gym Members', {
 function render_membership_history(frm) {
 	frappe.db.get_list('Gym Membership', {
 		filters: { gym_member_id: frm.doc.name },
-		fields: ['name', 'docstatus', 'creation', 'membership_starts', 'membership_ends', 'amended_from', 'fee_paid', 'balance'],
+		fields: ['name', 'docstatus', 'creation', 'date_of_registration', 'membership_ends', 'amended_from', 'fee_paid', 'balance'],
 		order_by: 'creation asc',
 		limit: 0,
 	}).then((records) => {
@@ -39,7 +39,7 @@ function render_membership_history(frm) {
 					<td><span class="indicator-pill ${status.color}">${status.label}</span></td>
 					<td>${event}</td>
 					<td>${frappe.datetime.str_to_user(r.creation)}</td>
-					<td>${r.membership_starts || ''}</td>
+					<td>${r.date_of_registration || ''}</td>
 					<td>${r.membership_ends || ''}</td>
 					<td>${r.fee_paid || ''}</td>
 					<td>${format_currency(r.balance || 0)}</td>

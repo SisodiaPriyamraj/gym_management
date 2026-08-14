@@ -16,10 +16,10 @@
    "fieldname": "membership",
    "fieldtype": "Link",
    "label": "membership",
-   "options": "Gym Registration Form"
+   "options": "Gym Membership"
   },
   {
-   "fetch_from": "membership.plan_end",
+   "fetch_from": "membership.membership_ends",
    "fieldname": "date",
    "fieldtype": "Data",
    "label": "date"
