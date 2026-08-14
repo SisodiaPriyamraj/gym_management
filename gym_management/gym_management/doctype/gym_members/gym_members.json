@@ -14,7 +14,9 @@
   "column_break_tvaqt",
   "gender",
   "photo",
-  "address"
+  "address",
+  "membership_history_tab",
+  "membership_history_html"
  ],
  "fields": [
   {
@@ -64,6 +66,16 @@
   {
    "fieldname": "column_break_tvaqt",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "membership_history_tab",
+   "fieldtype": "Tab Break",
+   "label": "Membership History"
+  },
+  {
+   "fieldname": "membership_history_html",
+   "fieldtype": "HTML",
+   "label": "Membership History"
   }
  ],
  "index_web_pages_for_search": 1,
