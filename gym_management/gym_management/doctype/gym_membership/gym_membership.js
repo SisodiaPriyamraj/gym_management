@@ -3,6 +3,10 @@
 
 function cal_plan_end(frm) {
 	if (!frm.doc.date_of_registration || !frm.doc.validity_plan_in_days) return;
+	if (frm.doc.entry_type === 'Renew') {
+		// Renew adds the member's remaining days on top of the new plan; only the server knows that, so leave the field for it to calculate on save.
+		return;
+	}
 	let date_of_reg = frappe.datetime.str_to_obj(frm.doc.date_of_registration);
 	let valid_till_date = frappe.datetime.add_days(date_of_reg, frm.doc.validity_plan_in_days);
 	frm.set_value('membership_ends', valid_till_date);
@@ -52,6 +56,7 @@ frappe.ui.form.on('Gym Membership', {
 	},
 	date_of_registration: cal_plan_end,
 	validity_plan_in_days: cal_plan_end,
+	entry_type: cal_plan_end,
 	before_save: extra_class_total,
 	locker_id: cal_lock_end,
 	locker_duration: cal_lock_end,

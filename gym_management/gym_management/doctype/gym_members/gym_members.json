@@ -15,6 +15,11 @@
   "gender",
   "photo",
   "address",
+  "subscription_section",
+  "subscription_status",
+  "subscription_start_date",
+  "column_break_subs1",
+  "subscription_end_date",
   "membership_history_tab",
   "membership_history_html"
  ],
@@ -66,6 +71,34 @@
   {
    "fieldname": "column_break_tvaqt",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "subscription_section",
+   "fieldtype": "Section Break",
+   "label": "Subscription"
+  },
+  {
+   "fieldname": "subscription_status",
+   "fieldtype": "Select",
+   "label": "Subscription Status",
+   "options": "Inactive\nActive",
+   "read_only": 1
+  },
+  {
+   "fieldname": "subscription_start_date",
+   "fieldtype": "Date",
+   "label": "Subscription Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_subs1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "subscription_end_date",
+   "fieldtype": "Date",
+   "label": "Subscription End Date",
+   "read_only": 1
   },
   {
    "fieldname": "membership_history_tab",

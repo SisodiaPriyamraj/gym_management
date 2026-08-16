@@ -8,10 +8,18 @@ frappe.ui.form.on('Gym Members', {
 	},
 });
 
+function format_ddmmyyyy(date_str) {
+	if (!date_str) return '';
+	let d = frappe.datetime.str_to_obj(date_str);
+	let dd = String(d.getDate()).padStart(2, '0');
+	let mm = String(d.getMonth() + 1).padStart(2, '0');
+	return `${dd}/${mm}/${d.getFullYear()}`;
+}
+
 function render_membership_history(frm) {
 	frappe.db.get_list('Gym Membership', {
 		filters: { gym_member_id: frm.doc.name },
-		fields: ['name', 'docstatus', 'creation', 'date_of_registration', 'membership_ends', 'amended_from', 'fee_paid', 'balance'],
+		fields: ['name', 'docstatus', 'creation', 'entry_type', 'date_of_registration', 'membership_ends', 'amended_from', 'fee_paid', 'balance'],
 		order_by: 'creation asc',
 		limit: 0,
 	}).then((records) => {
@@ -30,17 +38,15 @@ function render_membership_history(frm) {
 
 		let rows = records.map((r) => {
 			let status = status_map[r.docstatus] || { label: 'Unknown', color: 'gray' };
-			let event = r.amended_from
-				? `Amended from <a href="/app/gym-membership/${r.amended_from}">${r.amended_from}</a>`
-				: 'New Membership';
+			let type_color = r.entry_type === 'Renew' ? 'blue' : 'gray';
 			return `
 				<tr>
 					<td><a href="/app/gym-membership/${r.name}">${r.name}</a></td>
 					<td><span class="indicator-pill ${status.color}">${status.label}</span></td>
-					<td>${event}</td>
+					<td><span class="indicator-pill ${type_color}">${r.entry_type || ''}</span></td>
 					<td>${frappe.datetime.str_to_user(r.creation)}</td>
-					<td>${r.date_of_registration || ''}</td>
-					<td>${r.membership_ends || ''}</td>
+					<td>${format_ddmmyyyy(r.date_of_registration)}</td>
+					<td>${format_ddmmyyyy(r.membership_ends)}</td>
 					<td>${r.fee_paid || ''}</td>
 					<td>${format_currency(r.balance || 0)}</td>
 				</tr>`;
@@ -53,7 +59,7 @@ function render_membership_history(frm) {
 						<tr>
 							<th>Membership</th>
 							<th>Status</th>
-							<th>History</th>
+							<th>Type</th>
 							<th>Taken On</th>
 							<th>Starts</th>
 							<th>Ends</th>

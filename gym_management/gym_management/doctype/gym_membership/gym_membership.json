@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "entry_type",
   "gym_member_id",
   "phone__number",
   "column_break_rxomy",
@@ -50,6 +51,16 @@
   "amended_from"
  ],
  "fields": [
+  {
+   "default": "Fresh",
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Entry Type",
+   "options": "Fresh\nRenew",
+   "reqd": 1
+  },
   {
    "fetch_from": "gym_member_id.name1",
    "fieldname": "full_name",
