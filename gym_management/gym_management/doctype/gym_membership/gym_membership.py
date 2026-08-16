@@ -69,6 +69,20 @@ def sync_member_subscription_status(gym_member_id):
 			"subscription_start_date": None,
 			"subscription_end_date": None,
 		})
+
+	latest_weight_entry = frappe.get_all(
+		"Gym Membership",
+		filters={"gym_member_id": gym_member_id, "docstatus": 1},
+		fields=["weight"],
+		order_by="creation desc",
+		limit=1,
+	)
+	frappe.db.set_value(
+		"Gym Members",
+		gym_member_id,
+		"current_weight",
+		latest_weight_entry[0].weight if latest_weight_entry else None,
+	)
 			
 	
 

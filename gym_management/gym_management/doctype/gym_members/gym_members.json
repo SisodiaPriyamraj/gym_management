@@ -20,6 +20,7 @@
   "subscription_start_date",
   "column_break_subs1",
   "subscription_end_date",
+  "current_weight",
   "membership_history_tab",
   "membership_history_html"
  ],
@@ -98,6 +99,13 @@
    "fieldname": "subscription_end_date",
    "fieldtype": "Date",
    "label": "Subscription End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_weight",
+   "fieldtype": "Float",
+   "label": "Current Weight (kg)",
+   "precision": "1",
    "read_only": 1
   },
   {

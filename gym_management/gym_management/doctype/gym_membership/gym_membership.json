@@ -24,6 +24,7 @@
   "plan_details_section",
   "date_of_registration",
   "subscription_plan",
+  "weight",
   "column_break_k5tm2",
   "validity_plan_in_days",
   "membership_ends",
@@ -166,6 +167,13 @@
    "in_list_view": 1,
    "label": "Subscription Plan",
    "options": "Gym Subscription Plans",
+   "reqd": 1
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight (kg)",
+   "precision": "1",
    "reqd": 1
   },
   {

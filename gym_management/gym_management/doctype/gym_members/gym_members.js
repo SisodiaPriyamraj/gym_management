@@ -19,7 +19,7 @@ function format_ddmmyyyy(date_str) {
 function render_membership_history(frm) {
 	frappe.db.get_list('Gym Membership', {
 		filters: { gym_member_id: frm.doc.name },
-		fields: ['name', 'docstatus', 'creation', 'entry_type', 'date_of_registration', 'membership_ends', 'amended_from', 'fee_paid', 'balance'],
+		fields: ['name', 'docstatus', 'creation', 'entry_type', 'date_of_registration', 'membership_ends', 'amended_from', 'fee_paid', 'balance', 'weight'],
 		order_by: 'creation asc',
 		limit: 0,
 	}).then((records) => {
@@ -36,9 +36,18 @@ function render_membership_history(frm) {
 			2: { label: 'Cancelled', color: 'red' },
 		};
 
-		let rows = records.map((r) => {
+		let rows = records.map((r, i) => {
 			let status = status_map[r.docstatus] || { label: 'Unknown', color: 'gray' };
 			let type_color = r.entry_type === 'Renew' ? 'blue' : 'gray';
+			let weight_change = '';
+			if (i > 0 && records[i - 1].weight && r.weight) {
+				let diff = r.weight - records[i - 1].weight;
+				if (diff !== 0) {
+					let color = diff < 0 ? 'green' : 'red';
+					let sign = diff > 0 ? '+' : '';
+					weight_change = ` <span class="text-${color}">(${sign}${diff.toFixed(1)})</span>`;
+				}
+			}
 			return `
 				<tr>
 					<td><a href="/app/gym-membership/${r.name}">${r.name}</a></td>
@@ -47,6 +56,7 @@ function render_membership_history(frm) {
 					<td>${frappe.datetime.str_to_user(r.creation)}</td>
 					<td>${format_ddmmyyyy(r.date_of_registration)}</td>
 					<td>${format_ddmmyyyy(r.membership_ends)}</td>
+					<td>${r.weight ? r.weight + ' kg' : ''}${weight_change}</td>
 					<td>${r.fee_paid || ''}</td>
 					<td>${format_currency(r.balance || 0)}</td>
 				</tr>`;
@@ -63,6 +73,7 @@ function render_membership_history(frm) {
 							<th>Taken On</th>
 							<th>Starts</th>
 							<th>Ends</th>
+							<th>Weight</th>
 							<th>Fee Status</th>
 							<th>Balance</th>
 						</tr>
