@@ -187,7 +187,7 @@
    "doc_view": "",
    "label": "Gym Fee Dues Report",
    "link_to": "Gym Fee Dues Report",
-   "report_ref_doctype": "Gym Registration Form",
+   "report_ref_doctype": "Gym Membership",
    "type": "Report"
   },
   {
@@ -211,7 +211,7 @@
    "doc_view": "",
    "label": "Gym Master Report",
    "link_to": "Gym Master Report",
-   "report_ref_doctype": "Gym Registration Form",
+   "report_ref_doctype": "Gym Membership",
    "type": "Report"
   },
   {
@@ -219,7 +219,7 @@
    "doc_view": "",
    "label": "Gym Monthly Income",
    "link_to": "Gym Monthly Income",
-   "report_ref_doctype": "Gym Registration Form",
+   "report_ref_doctype": "Gym Membership",
    "type": "Report"
   }
  ],
