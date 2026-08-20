@@ -38,7 +38,11 @@ class GymMembership(Document):
 				limit=1,
 			)
 			if previous and previous[0].membership_ends:
-				remaining_days = max(0, date_diff(previous[0].membership_ends, nowdate()))
+				days_left_on_old_plan = date_diff(previous[0].membership_ends, nowdate())
+				if days_left_on_old_plan >= 0:
+					# Old plan's end date is already paid for, so the new plan
+					# starts the day after it instead of overlapping with it.
+					remaining_days = days_left_on_old_plan + 1
 
 		total_days = remaining_days + self.validity_plan_in_days
 		self.membership_ends = add_days(self.date_of_registration, total_days)
@@ -81,7 +85,7 @@ def sync_member_subscription_status(gym_member_id):
 		"Gym Members",
 		gym_member_id,
 		"current_weight",
-		latest_weight_entry[0].weight if latest_weight_entry else None,
+		latest_weight_entry[0].weight if latest_weight_entry else 0,
 	)
 			
 	
